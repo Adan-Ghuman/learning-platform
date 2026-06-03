@@ -5,5 +5,6 @@ export interface Response {
   learner_id: number;
   course_id: number;
   content: string;
+  created_at: string;
   course: Course;
 }
