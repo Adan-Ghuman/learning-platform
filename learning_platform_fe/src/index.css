@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface: #faf9f6; /* off-white/cream */
+  --color-surface-alt: #f0eee9;
+  --color-ink: #1a1a1a;
+  --color-ink-light: #4a4a4a;
+  --color-primary: #8b0000; /* deep burgundy */
+  --color-border-subtle: #e5e3db;
+
+  --font-display:
+    ui-serif, "Sitka Text", "Charter", "Bitstream Charter", Cambria, Georgia,
+    serif;
+  --font-body: ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+@layer base {
+  input,
+  textarea {
+    @apply bg-surface border border-border-subtle text-ink p-3 rounded-md placeholder:opacity-60;
+    font-family: var(--font-body);
+    transition:
+      box-shadow 0.12s ease,
+      border-color 0.12s ease;
+  }
+
+  textarea {
+    min-height: 8rem;
+  }
+
+  input:focus,
+  textarea:focus {
+    @apply outline-none ring-2 ring-primary/20 border-primary;
+  }
+
+  button {
+    @apply bg-transparent border border-primary text-primary px-4 py-2 rounded-md font-semibold transition-colors duration-150;
+    cursor: pointer;
+  }
+
+  button:hover:not([disabled]) {
+    @apply bg-primary text-surface;
+  }
+
+  button[disabled] {
+    @apply opacity-50 cursor-not-allowed;
+  }
+}
