@@ -1,15 +1,15 @@
 services:
   - type: web
     name: learning-platform-backend
-    env: docker
+    runtime: docker
     plan: free
     branch: main
-    # Root Directory should be empty to use the repo root as context,
-    # or set to `learning_platform_be` if the Dockerfile is self-contained there.
-    # To fix the "is a directory" error, ensure dockerfilePath is a FILE, not a folder.
-    rootDirectory: .
+    # Render Blueprint fields for Docker services are relative to the repo root.
+    # The Rails app lives in learning_platform_be, so point the Dockerfile and context there.
+    rootDir: learning_platform_be
     dockerfilePath: learning_platform_be/Dockerfile
-    autodeploy: true
+    dockerContext: learning_platform_be
+    autoDeployTrigger: commit
 
 databases:
   - name: learning-platform-db
