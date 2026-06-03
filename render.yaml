@@ -4,12 +4,11 @@ services:
     env: docker
     plan: free
     branch: main
-    # Set the repo subdirectory that contains your Rails app and Dockerfile.
-    # When `rootDirectory` is set to `learning_platform_be`, make `dockerfilePath` relative
-    # to that directory (just `Dockerfile`). If you prefer leaving rootDirectory empty,
-    # use `learning_platform_be/Dockerfile` as the Dockerfile path in the Render UI.
-    rootDirectory: learning_platform_be
-    dockerfilePath: Dockerfile
+    # Root Directory should be empty to use the repo root as context,
+    # or set to `learning_platform_be` if the Dockerfile is self-contained there.
+    # To fix the "is a directory" error, ensure dockerfilePath is a FILE, not a folder.
+    rootDirectory: .
+    dockerfilePath: learning_platform_be/Dockerfile
     autodeploy: true
 
 databases:

@@ -28,10 +28,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Lowercase repo name
+        run: |
+          echo "REPO_LC=${GITHUB_REPOSITORY_OWNER,,}" >> ${GITHUB_ENV}
+
       - name: Build and push image
         uses: docker/build-push-action@v5
         with:
           context: ./learning_platform_be
           file: ./learning_platform_be/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/learning-platform-backend:latest
+          tags: ghcr.io/${{ env.REPO_LC }}/learning-platform-backend:latest
