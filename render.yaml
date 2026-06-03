@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: learning-platform-backend
+    env: docker
+    plan: free
+    branch: main
+    dockerfilePath: learning_platform_be/Dockerfile
+    autodeploy: true
+
+databases:
+  - name: learning-platform-db
+    plan: starter
+    # region: choose your region
+
+# Note: Set production environment variables in the Render dashboard or via the CLI:
+# - SECRET_KEY_BASE
+# - DATABASE_URL (use the Postgres instance created by Render or external)
+# - RAILS_ENV=production
