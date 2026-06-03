@@ -1,6 +1,8 @@
 class Api::ResponsesController < ApplicationController
+  include Authenticable
+  
   def create
-    response = Response.new(response_params)
+    response = current_learner.responses.build(response_params)
 
     if response.save
       render json: response, status: :created
@@ -15,7 +17,6 @@ class Api::ResponsesController < ApplicationController
 
   def response_params
     params.permit(
-      :learner_id,
       :course_id,
       :content
     )

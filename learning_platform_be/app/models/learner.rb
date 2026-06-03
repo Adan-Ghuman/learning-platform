@@ -1,4 +1,6 @@
 class Learner < ApplicationRecord
+  has_secure_password
+  
   has_many :responses, dependent: :destroy
 
   validates :name, presence: true

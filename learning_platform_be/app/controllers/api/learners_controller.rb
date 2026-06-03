@@ -1,11 +1,11 @@
 class Api::LearnersController < ApplicationController
-  def responses
-  learner = Learner.find(params[:id])
+  include Authenticable
+  
+  def my_responses
+    responses = current_learner.responses.includes(:course)
 
-  responses = learner.responses.includes(:course)
-
-  render json: responses.as_json(
-    include: :course
-  )
-end
+    render json: responses.as_json(
+      include: :course
+    )
+  end
 end
